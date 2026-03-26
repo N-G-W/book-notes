@@ -1,6 +1,7 @@
 import express from "express";
 import pg from "pg";
 import {readFileSync} from "node:fs";
+import axios from "axios";
 
 const port = 3000;
 const app = express();
@@ -58,6 +59,23 @@ app.get("/", async (req, res) => {
     let sortOrder = req.query.sortby;
     let response = await getAllNotes(sortOrder);
     // console.log(response.rows);
+
+    for (const note of  response.rows) {
+        let title = note.title;
+        let array = title.split(" ");
+        let url = array.reduce(
+            (acc, cur, currentIndex) => { return (currentIndex===0)?acc+cur:acc +"+"+ cur },
+            "https://openlibrary.org/search.json?q="
+        );
+        let document = await axios.get(url);
+        try {
+            console.log(document.data.docs[0].cover_i ?? "not found");
+            let bookCoverURL = await axios.get(`https://covers.openlibrary.org/b/id/${document.data.docs[0].cover_i}-M.jpg`);
+            console.log(bookCoverURL.data);
+        }
+        catch (err) { console.log(err) };
+    }
+    
     res.render("index.ejs",{
         notes: response.rows ?? [],
     });
@@ -70,9 +88,7 @@ app.get("/add", (req, res) => {
 app.post("/add", async (req, res) => {
     // 2. create a post by connecting to the database
     let response = await addNotes(req.body);
-    res.redirect("/", {
-        notes: response.rows ?? [],
-    });
+    res.redirect("/");
 });
 
 app.get("/read/:id", async (req, res) => {
