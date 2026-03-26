@@ -14,8 +14,19 @@ const db = new pg.Client(databaseCredentials);
 
 db.connect();
 
-async function getAllNotes() {
-    let response = await db.query("select * from notes");
+async function getAllNotes(sort = "") {
+    let query;
+    switch (sort) {
+        case "review":
+            query = "select * from notes order by notes.review desc"
+            break;
+        case "date":
+            query = "select * from notes order by notes.date_read desc"
+            break;
+        default:
+            query = "select * from notes";
+    }
+    let response = await db.query(query);
     return response ?? "Couldn't get data";
 }
 
@@ -44,7 +55,8 @@ async function deleteNotes(id) {
 
 app.get("/", async (req, res) => {
     // 1. get all the post after connecting to the database
-    let response = await getAllNotes();
+    let sortOrder = req.query.sortby;
+    let response = await getAllNotes(sortOrder);
     // console.log(response.rows);
     res.render("index.ejs",{
         notes: response.rows ?? [],

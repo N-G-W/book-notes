@@ -22,3 +22,13 @@ update notes set title='${req.body.title}', date_read='${req.body.date_read}',
 review='${req.body.review}', overview='${req.body.notes}', notes='${req.body.notes}' 
 where notes.id = 1
 returning *
+
+-- select from best reviews
+select *
+from notes
+order by notes.review desc
+
+-- select from most recent
+select *
+from notes
+order by notes.date_read desc
