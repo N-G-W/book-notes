@@ -4,6 +4,7 @@
     font-family: var(--libre-font);
     background-color: var(--background-color);
     color: var(--midground-light);
+    scrollbar-width: none;
 }
 
 :root{
@@ -51,16 +52,20 @@ span.bold{
 hr.break-heading{
     border: none;
     border-top: 2px solid var(--foreground-color);
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+}
+
+.card{
+    margin-bottom: 7rem;
 }
 
 img.card-image{
     float: left;
-    height: 200px;
-    width: 100px;
+    height: 220px;
+    width: 120px;
     object-fit: cover;
-    padding-bottom: 0.5rem;
-    padding-right: 1rem;
+    /* padding-bottom: 0.5rem; */
+    padding-right: 2rem;
 }
 
 .card-title{
@@ -82,4 +87,17 @@ img.card-image{
     font-size: 1.2rem;
     font-weight: 100;
     font-family: var(--lora-font);
+}
+
+.notes-section{
+    margin-top: -3rem;
+}
+
+.notes-heading{
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+.notes-paragraph{
+    margin: 2rem 0rem;
 }
