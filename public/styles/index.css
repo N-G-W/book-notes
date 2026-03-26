@@ -87,6 +87,10 @@ img.card-image{
     margin-bottom: 1rem;
 }
 
+.edit-icon{
+    margin: 1rem 0rem;
+}
+
 .card-warping-synopsis{
     margin-bottom: 1rem;
     font-size: 1.2rem;
@@ -127,6 +131,20 @@ button.add-notes:hover,input[type="submit"]:hover{
 button.add-notes:active, input[type="submit"]:active {
     background-color: var(--midground-light);
     color: var(--background-color);
+}
+
+.center>*{
+    margin: auto;
+}
+
+.center .delete{
+    background-color: #3f1a1a;
+    color: #c8d5a3;
+}
+
+.delete:active{
+    background-color:#c8d5a3;
+    color: #3f1a1a;
 }
 
 /* form section */

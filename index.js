@@ -31,17 +31,14 @@ async function addNotes(data) {
     return response ?? "Couldn't get data";
 }
 
-async function updateNotes() {
-    let response = await db.query(`insert into notes(title, date_read, review, overview, notes)
-    values ('${req.body.title}', '${req.body.date_read}', '${req.body.review}',
-    '${req.body.notes}', '${req.body.notes}') returning *`);
+async function updateNotes(data,id) {
+    let response = await db.query(`update notes set title='${data.title}', date_read='${data.date_read}',
+    review='${data.review}', overview='${data.notes}', notes='${data.notes}' where notes.id =${id} returning *`);
     return response ?? "Couldn't get data";
 }
 
-async function deleteNotes() {
-    let response = await db.query(`insert into notes(title, date_read, review, overview, notes)
-    values ('${req.body.title}', '${req.body.date_read}', '${req.body.review}',
-    '${req.body.notes}', '${req.body.notes}') returning *`);
+async function deleteNotes(id) {
+    let response = await db.query("delete from notes * where notes.id= ($1)",[id]);
     return response ?? "Couldn't get data";
 }
 
@@ -74,6 +71,26 @@ app.get("/read/:id", async (req, res) => {
     res.render("read.ejs", {
         note: note.rows[0] ?? [],
     });
+})
+
+app.get("/edit/:id", async (req, res) => {
+    let paramID = req.params.id;
+    let note = await getParticularNote(paramID);
+    res.render("edit.ejs", {
+        note: note.rows[0] ?? [],
+    });
+})
+
+app.post("/update/:id", async (req, res) => {
+    let paramID = req.params.id;
+    let note = await updateNotes(req.body, paramID);
+    res.redirect("/");
+});
+
+app.post("/delete/:id", async (req, res) => {
+    let paramID = req.params.id;
+    let note = await deleteNotes(paramID);
+    res.redirect("/");
 })
 
 app.listen(port, (e) => {

@@ -16,3 +16,9 @@ returning *
 -- read all the books from the database
 select * 
 from notes
+
+-- update a book with a particular id
+update notes set title='${req.body.title}', date_read='${req.body.date_read}',
+review='${req.body.review}', overview='${req.body.notes}', notes='${req.body.notes}' 
+where notes.id = 1
+returning *
