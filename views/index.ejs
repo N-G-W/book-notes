@@ -34,48 +34,25 @@
         <hr class="break-heading" />
       </div>
       <div class="card-container">
-        <div class="card">
-          <img src="images/scroll.png" alt="" class="card-image" />
-          <div class="card-title">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim,
-            soluta.
-          </div>
-          <div class="review-n-time-section">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-          </div>
-          <div class="card-warping-synopsis">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis error
-            repudiandae voluptatem consectetur nobis distinctio commodi omnis
-            delectus ratione totam ex eius sint sunt obcaecati, dolor
-            reprehenderit laudantium adipisci tenetur consequuntur est ipsa
-            cumque. Rem molestias quod sit necessitatibus maxime.
-          </div>
-          <div class="card-warping-synopsis">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis,
-            unde.
-          </div>
-        </div>
-        <div class="card">
-          <img src="images/scroll.png" alt="" class="card-image" />
-          <div class="card-title">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim,
-            soluta.
-          </div>
-          <div class="review-n-time-section">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-          </div>
-          <div class="card-warping-synopsis">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis error
-            repudiandae voluptatem consectetur nobis distinctio commodi omnis
-            delectus ratione totam ex eius sint sunt obcaecati, dolor
-            reprehenderit laudantium adipisci tenetur consequuntur est ipsa
-            cumque. Rem molestias quod sit necessitatibus maxime.
-          </div>
-          <div class="card-warping-synopsis">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis,
-            unde.
-          </div>
-        </div>
+        <% if( locals.notes){ %>
+          <% for (const note of notes) { %>
+            <div class="card">
+              <img src="images/scroll.png" alt="" class="card-image" />
+              <div class="card-title">
+                <%= note.title %>
+              </div>
+              <div class="review-n-time-section">
+                <%= note.date_read %> <%= note.review %>
+              </div>
+              <div class="card-warping-synopsis">
+                <%= note.overview%>
+              </div>
+              <div class="card-warping-synopsis">
+                <%= note.overview %>
+              </div>
+            </div>
+          <%} %>
+        <% } %>
       </div>
 
       <div class="center">

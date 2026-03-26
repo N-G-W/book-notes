@@ -14,9 +14,39 @@ const db = new pg.Client(databaseCredentials);
 
 db.connect();
 
-app.get("/", (req, res) => {
+async function getNotes() {
+    let response = await db.query("select * from notes");
+    return response ?? "Couldn't get data";
+}
+
+async function addNotes(data) {
+    let response = await db.query(`insert into notes(title, date_read, review, overview, notes)
+    values ('${data.title}', '${data.date_read}', '${data.review}',
+    '${data.notes}', '${data.notes}') returning *`);
+    return response ?? "Couldn't get data";
+}
+
+async function updateNotes() {
+    let response = await db.query(`insert into notes(title, date_read, review, overview, notes)
+    values ('${req.body.title}', '${req.body.date_read}', '${req.body.review}',
+    '${req.body.notes}', '${req.body.notes}') returning *`);
+    return response ?? "Couldn't get data";
+}
+
+async function deleteNotes() {
+    let response = await db.query(`insert into notes(title, date_read, review, overview, notes)
+    values ('${req.body.title}', '${req.body.date_read}', '${req.body.review}',
+    '${req.body.notes}', '${req.body.notes}') returning *`);
+    return response ?? "Couldn't get data";
+}
+
+app.get("/", async (req, res) => {
     // 1. get all the post after connecting to the database
-    res.render("index.ejs");
+    let response = await getNotes();
+    console.log(response.rows);
+    res.render("index.ejs",{
+        notes: response.rows ?? [],
+    });
 });
 
 app.get("/add", (req, res) => {
@@ -25,12 +55,10 @@ app.get("/add", (req, res) => {
 
 app.post("/add", async (req, res) => {
     // 2. create a post by connecting to the database
-    console.log(req.body);
-    console.log(req.body.title);
-    await db.query(`insert into notes(title, date_read, review, overview, notes)
-    values ('${req.body.title}', '${req.body.date_read}', '${req.body.review}',
-    '${req.body.notes}', '${req.body.notes}') returning *`)
-    res.redirect("/");
+    let response = await addNotes(req.body);
+    res.redirect("/", {
+        notes: response.rows ?? [],
+    });
 });
 
 app.listen(port, (e) => {
