@@ -49,6 +49,11 @@ span.bold{
     font-weight: 900;
 }
 
+span.spacer{
+    padding: 2px;
+    background-color: inherit;
+}
+
 hr.break-heading{
     border: none;
     border-top: 2px solid var(--foreground-color);
@@ -101,3 +106,50 @@ img.card-image{
 .notes-paragraph{
     margin: 2rem 0rem;
 }
+
+.center{
+    display: flex;
+    justify-content: center;
+}
+
+button.add-notes,input[type="submit"]{
+    border: none;
+    border-radius: 1rem;
+    padding: 1rem;
+    background-color: var(--midground-dark);
+    margin-bottom: 1rem;
+}
+
+button.add-notes:hover,input[type="submit"]:hover{
+    opacity: 50%;
+}
+
+button.add-notes:active, input[type="submit"]:active {
+    background-color: var(--midground-light);
+    color: var(--background-color);
+}
+
+/* form section */
+
+.form-border{
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2rem;
+    padding: 1rem;
+}
+
+label,input,textarea{
+    display: block;
+    margin: 1rem 0rem;
+    border-radius: 5px;
+}
+
+input[type="text"],textarea{
+    box-sizing: border-box;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: var(--midground-dark);
+    padding: 1rem;
+    resize: none;
+}
+

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/index.css" />
+    <title>Book Notes</title>
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="subheading">Add Notes For a Book</div>
+      <div class="form-border">
+        <form action="/add" method="post">
+          <label for="title">Title </label>
+          <input
+            type="text"
+            class="title"
+            name="title"
+            id="title"
+            placeholder="Book Title ..."
+          />
+
+          <label for="date-read">Date Read </label>
+          <input
+            type="text"
+            class="date-read"
+            name="date-read"
+            id="date-read"
+            placeholder="Last date you read the book ..."
+          />
+
+          <label for="review">Review rating </label>
+          <input
+            type="text"
+            class="review"
+            name="review"
+            id="review"
+            placeholder="On a scale from 1 to 10..."
+          />
+
+          <label for="overview">Short overview </label>
+          <input
+            type="text"
+            class="overview"
+            name="overview"
+            id="overview"
+            placeholder="Book overview ..."
+          />
+
+          <label for="notes">Book notes </label>
+          <textarea
+            type="text"
+            class="notes"
+            name="notes"
+            id="notes"
+            placeholder="Book notes ..."
+          ></textarea>
+
+          <div class="center">
+            <input type="submit" value="Submit" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
