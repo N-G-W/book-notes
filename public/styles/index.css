@@ -1,0 +1,85 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: var(--libre-font);
+    background-color: var(--background-color);
+    color: var(--midground-light);
+}
+
+:root{
+    /* colors */
+    --background-color : #1A120B  ; 
+    --midground-dark : #3C2A21 ; 
+    --midground-light : #D5CEA3  ; 
+    --foreground-color : #E5E5CB;
+
+    /* fonts */
+    --libre-font: "Libre Baskerville", serif;
+    --lora-font: "Lora", serif;
+}
+
+.main-container{
+    width: max(50%, 600px);
+    margin: 1rem auto;
+}
+
+.heading{
+    font-family: var(--libre-font);
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+}
+
+.subheading{
+    font-family: var(--libre-font);
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+}
+
+.heading-paragraph{
+    word-spacing: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 100;
+}
+
+span.bold{
+    font-weight: 900;
+}
+
+hr.break-heading{
+    border: none;
+    border-top: 2px solid var(--foreground-color);
+    margin-bottom: 2rem;
+}
+
+img.card-image{
+    float: left;
+    height: 200px;
+    width: 100px;
+    object-fit: cover;
+    padding-bottom: 0.5rem;
+    padding-right: 1rem;
+}
+
+.card-title{
+    font-size: 2rem;
+    font-weight: 300;
+    font-family: var(--lora-font);
+    margin-bottom: 1rem;
+}
+
+.review-n-time-section{
+    font-size: 0.8rem;
+    letter-spacing: 0.2rem;
+    color:#5e5b47;
+    margin-bottom: 1rem;
+}
+
+.card-warping-synopsis{
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 100;
+    font-family: var(--lora-font);
+}
