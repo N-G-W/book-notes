@@ -9,7 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles/index.css" />
+    <link rel="stylesheet" href="/styles/index.css" />
     <title>Book Notes</title>
   </head>
   <body>
@@ -33,62 +33,32 @@
 
         <hr class="break-heading" />
       </div> -->
-      <div class="card-container">
+      <% if (locals.note) { %>
+        <div class="card-container">
         <div class="card">
-          <img src="images/scroll.png" alt="" class="card-image" />
+          <img src="/images/scroll.png" alt="" class="card-image" />
           <div class="subheading">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim,
-            soluta.
+            <%= note.title %>
           </div>
-          <div class="review-n-time-section">Lorem ipsum dolor sit amet.</div>
-          <div class="review-n-time-section">Lorem ipsum dolor sit amet.</div>
-          <div class="review-n-time-section">Lorem ipsum dolor sit amet.</div>
+          <div class="review-n-time-section"><%= note.date_read %></div>
+          <div class="review-n-time-section"><%= note.review %></div>
+          <div class="review-n-time-section"><%= note.review %></div>
           <div class="card-warping-synopsis">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis error
-            repudiandae voluptatem consectetur nobis distinctio commodi omnis
-            delectus ratione totam ex eius sint sunt obcaecati, dolor
-            reprehenderit laudantium adipisci tenetur consequuntur est ipsa
-            cumque. Rem molestias quod sit necessitatibus maxime.
+            <%= note.overview %>
           </div>
           <div class="card-warping-synopsis">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis,
-            unde.
+            <%= note.overview %>
           </div>
         </div>
       </div>
       <div class="notes-section">
         <div class="notes-heading">My Notes</div>
         <p class="notes-paragraph">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis,unde.
+          <%= note.notes %>
         </p>
-        <p class="notes-paragraph">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis,unde.
-        </p>
-        <p class="notes-paragraph">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis,unde.
-        </p>
-        <p class="notes-paragraph">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis,unde.
-        </p>
-        <p class="notes-paragraph">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis,unde.
-        </p>
-        <p class="notes-paragraph">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis,unde.
-        </p>
-        <p class="notes-paragraph">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis,unde.
-        </p>
-        <p class="notes-paragraph">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis,unde.
-        </p>
-        <p class="notes-paragraph">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis,unde.
-        </p>
-        <p class="notes-paragraph">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis,unde.
-        </p>
+       
       </div>
+      <% } %>
     </div>
   </body>
 </html>

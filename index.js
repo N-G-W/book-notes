@@ -14,8 +14,13 @@ const db = new pg.Client(databaseCredentials);
 
 db.connect();
 
-async function getNotes() {
+async function getAllNotes() {
     let response = await db.query("select * from notes");
+    return response ?? "Couldn't get data";
+}
+
+async function getParticularNote(id) {
+    let response = await db.query("select * from notes where notes.id=($1)", [id]);
     return response ?? "Couldn't get data";
 }
 
@@ -42,8 +47,8 @@ async function deleteNotes() {
 
 app.get("/", async (req, res) => {
     // 1. get all the post after connecting to the database
-    let response = await getNotes();
-    console.log(response.rows);
+    let response = await getAllNotes();
+    // console.log(response.rows);
     res.render("index.ejs",{
         notes: response.rows ?? [],
     });
@@ -60,6 +65,16 @@ app.post("/add", async (req, res) => {
         notes: response.rows ?? [],
     });
 });
+
+app.get("/read/:id", async (req, res) => {
+    let paramID = req.params.id;
+    console.log(paramID);
+    let note = await getParticularNote(paramID);
+    console.log(note.rows[0])
+    res.render("read.ejs", {
+        note: note.rows[0] ?? [],
+    });
+})
 
 app.listen(port, (e) => {
     if (e) throw e;
