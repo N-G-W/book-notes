@@ -1,6 +1,6 @@
 import express from "express";
 import pg from "pg";
-import {readFileSync} from "node:fs";
+import {writeFileSync,readFileSync} from "node:fs";
 import axios from "axios";
 
 const port = 3000;
@@ -37,9 +37,9 @@ async function getParticularNote(id) {
 }
 
 async function addNotes(data) {
-    let response = await db.query(`insert into notes(title, date_read, review, overview, notes)
+    let response = await db.query(`insert into notes(title, date_read, review, overview, notes, image_url)
     values ('${data.title}', '${data.date_read}', '${data.review}',
-    '${data.notes}', '${data.notes}') returning *`);
+    '${data.notes}', '${data.notes}', '${data.image_url}') returning *`);
     return response ?? "Couldn't get data";
 }
 
@@ -58,26 +58,10 @@ app.get("/", async (req, res) => {
     // 1. get all the post after connecting to the database
     let sortOrder = req.query.sortby;
     let response = await getAllNotes(sortOrder);
-    // console.log(response.rows);
-
-    for (const note of  response.rows) {
-        let title = note.title;
-        let array = title.split(" ");
-        let url = array.reduce(
-            (acc, cur, currentIndex) => { return (currentIndex===0)?acc+cur:acc +"+"+ cur },
-            "https://openlibrary.org/search.json?q="
-        );
-        let document = await axios.get(url);
-        try {
-            console.log(document.data.docs[0].cover_i ?? "not found");
-            let bookCoverURL = await axios.get(`https://covers.openlibrary.org/b/id/${document.data.docs[0].cover_i}-M.jpg`);
-            console.log(bookCoverURL.data);
-        }
-        catch (err) { console.log(err) };
-    }
+    console.log(response.rows);
     
     res.render("index.ejs",{
-        notes: response.rows ?? [],
+        notes: response.rows ?? []
     });
 });
 
@@ -87,6 +71,19 @@ app.get("/add", (req, res) => {
 
 app.post("/add", async (req, res) => {
     // 2. create a post by connecting to the database
+    let title = req.body.title;
+    let array = title.split(" ");
+    let url = array.reduce(
+        (acc, cur, currentIndex) => { return (currentIndex===0)?acc+cur:acc +"+"+ cur },
+        "https://openlibrary.org/search.json?q="
+    );
+    let document = await axios.get(url);
+    try {
+        console.log(document.data.docs[0].cover_i ?? "not found");
+        req.body.image_url= `https://covers.openlibrary.org/b/id/${document.data.docs[0].cover_i}-M.jpg`;
+        console.log(req.body.image_url);
+    }
+    catch (err) { console.log(err) };
     let response = await addNotes(req.body);
     res.redirect("/");
 });

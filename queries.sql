@@ -32,3 +32,7 @@ order by notes.review desc
 select *
 from notes
 order by notes.date_read desc
+
+-- alter the table to store the url of the image path
+alter table notes
+add image_url varchar(200)

@@ -37,7 +37,7 @@
           <% for (const note of notes) { %>
             <div class="card">
               <a href="/read/<%=  note.id %>" class="card-link">
-                <img src="/images/scroll.png" alt="" class="card-image" />
+                <img src="<%= (note.image_url&& note.image_url!=[])? note.image_url: "/images/scroll.png" %>" alt="" class="card-image" />
                 <div class="card-title">
                 <%= note.title %>
               </div>
