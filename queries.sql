@@ -5,7 +5,8 @@ title text,
 date_read text, 
 review text,
 overview text,
-notes text
+notes text,
+image_url varchar(200)
 );
 
 -- add new book with notes to database
