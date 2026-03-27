@@ -1,6 +1,7 @@
 # Book Notes
 
 This is a simple website that uses Node, Express, Ejs, Postgres, along with the Open Library API, for keeping track of the books you have read, their review and notes.
+<img width="800" height="auto" alt="preview of book notes" src="https://github.com/user-attachments/assets/b1ff544c-90ec-4d28-8f8b-ba7695802cf3" />
 
 ## Setup Instructions
 
