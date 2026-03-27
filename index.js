@@ -83,9 +83,12 @@ app.post("/add", async (req, res) => {
         req.body.image_url= `https://covers.openlibrary.org/b/id/${document.data.docs[0].cover_i}-M.jpg`;
         console.log(req.body.image_url);
     }
-    catch (err) { console.log(err) };
-    let response = await addNotes(req.body);
-    res.redirect("/");
+    catch (err) { console.log(err);  req.body.image_url=null}
+    finally {
+        console.log(req.body);
+        let response = await addNotes(req.body);
+        res.redirect("/");
+    }
 });
 
 app.get("/read/:id", async (req, res) => {

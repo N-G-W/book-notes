@@ -36,16 +36,12 @@
       <% if (locals.note) { %>
         <div class="card-container">
         <div class="card">
-          <img src="<%= (note.image_url&& note.image_url!=[])? note.image_url: "/images/scroll.png" %>" alt="" class="card-image" />
+                <img src="<%= (note.image_url&& note.image_url!=='null' && note.image_url!=null)? note.image_url: "/images/frown.svg" %>" alt="" class="card-image" />
           <div class="subheading">
             <%= note.title %>
           </div>
           <div class="review-n-time-section"><%= note.date_read %></div>
           <div class="review-n-time-section"><%= note.review %></div>
-          <div class="review-n-time-section"><%= note.review %></div>
-          <div class="card-warping-synopsis">
-            <%= note.overview %>
-          </div>
           <div class="card-warping-synopsis">
             <%= note.overview %>
           </div>
